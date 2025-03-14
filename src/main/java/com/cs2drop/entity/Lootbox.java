@@ -2,40 +2,43 @@ package com.cs2drop.entity;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Lootbox {
 	 public Lootbox() {}
 
-	public Lootbox(Long lootBox_id, String name, List<Skin> skins) {
+	public Lootbox(int lootbox_id, String name, List<Skin> skins) {
 		super();
-		this.lootBox_id = lootBox_id;
-		this.name = name;
+		this.lootbox_id = lootbox_id;
+		this.lootbox_name = name;
 		this.skins = skins;
 	}
 
 	@Id
-	 private Long lootBox_id;
+	 private int lootbox_id;
 
 	 @Column(nullable = false)
-	 private String name;
+	 private String lootbox_name;
 
 	 @OneToMany(mappedBy = "lootbox", cascade = CascadeType.ALL, orphanRemoval = true)
+	 @JsonIgnore
 	 private List<Skin> skins;
 
-	public Long getLootBox_id() {
-		return lootBox_id;
+	public int getLootbox_id() {
+		return lootbox_id;
 	}
 
-	public void setLootBox_id(Long lootBox_id) {
-		this.lootBox_id = lootBox_id;
+	public void setLootbox_id(int lootbox_id) {
+		this.lootbox_id = lootbox_id;
 	}
 
 	public String getName() {
-		return name;
+		return lootbox_name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.lootbox_name = name;
 	}
 
 	public List<Skin> getSkins() {

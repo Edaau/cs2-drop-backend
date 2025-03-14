@@ -26,7 +26,7 @@ public class SkinService {
     }
 
     // Search one skin by Id
-    public Optional<Skin> getSkinById(long id) {
+    public Optional<Skin> getSkinById(int id) {
         return skinRepository.findById(id);
     }
 
@@ -34,7 +34,7 @@ public class SkinService {
     public Skin addSkin(Skin skin) {
         return skinRepository.save(skin);
     }
-    public Skin updateSkin(long id, Skin updatedSkin) {
+    public Skin updateSkin(int id, Skin updatedSkin) {
         Optional<Skin> optionalSkin = skinRepository.findById(id);
         
         if (optionalSkin.isPresent()) { // Verify if find a lootbox
@@ -46,11 +46,11 @@ public class SkinService {
         }
     }
     // Delete one skin by Id
-    public void deleteSkin(long id) {
+    public void deleteSkin(int id) {
         skinRepository.deleteById(id);
     }
 
-    public List<Skin> getSkinsByLootbox(Long lootboxId) {
-        return skinRepository.findByLootboxId(lootboxId);
+    public List<Skin> getSkinsByLootbox(int lootbox_id) {
+        return skinRepository.findByLootbox_id(lootbox_id);
     }
 }

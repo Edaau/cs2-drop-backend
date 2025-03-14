@@ -1,15 +1,17 @@
 package com.cs2drop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
 public class Skin {
 	public Skin() {}
 
-	public Skin(Long skin_id, String name, String rarity, double chance, Lootbox lootbox) {
+	public Skin(int skin_id, String name, String rarity, double chance, Lootbox lootbox) {
 		super();
 		this.skin_id = skin_id;
-		this.name = name;
+		this.skin_name = name;
 		this.rarity = rarity;
 		this.chance = chance;
 		this.lootbox = lootbox;
@@ -17,10 +19,10 @@ public class Skin {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long skin_id;
+    private int skin_id;
 
     @Column(nullable = false)
-    private String name;
+    private String skin_name;
 
     @Column(nullable = false)
     private String rarity;
@@ -30,22 +32,23 @@ public class Skin {
 
     @ManyToOne
     @JoinColumn(name = "lootbox_id", nullable = false)
+    @JsonBackReference
     private Lootbox lootbox;
 
-	public Long getSkin_id() {
+	public int getSkin_id() {
 		return skin_id;
 	}
 
-	public void setSkin_id(Long skin_id) {
+	public void setSkin_id(int skin_id) {
 		this.skin_id = skin_id;
 	}
 
 	public String getName() {
-		return name;
+		return skin_name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.skin_name = name;
 	}
 
 	public String getRarity() {

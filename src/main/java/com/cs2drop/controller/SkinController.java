@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/skins")
+@RequestMapping("/api/skins")
 public class SkinController {
 
     @Autowired
@@ -35,13 +35,13 @@ public class SkinController {
 
     // search by skin ID
     @GetMapping("/{id}")
-    public Optional<Skin> getSkinById(@PathVariable Long id) {
+    public Optional<Skin> getSkinById(@PathVariable int id) {
         return skinService.getSkinById(id);
     }
 
     // Search all skins in a lootbox by lootboxId
     @GetMapping("/lootbox/{lootboxId}")
-    public List<Skin> getSkinsByLootbox(@PathVariable Long lootboxId) {
+    public List<Skin> getSkinsByLootbox(@PathVariable int lootboxId) {
         return skinService.getSkinsByLootbox(lootboxId);
     }
 
@@ -54,14 +54,14 @@ public class SkinController {
 
     // Update a new skin
     @PutMapping("/{id}")
-    public Skin updateSkin(@PathVariable Long id, @RequestBody Skin updatedSkin, @RequestHeader("X-API-KEY") String apiKey) {
+    public Skin updateSkin(@PathVariable int id, @RequestBody Skin updatedSkin, @RequestHeader("X-API-KEY") String apiKey) {
         validateApiKey(apiKey);
         return skinService.updateSkin(id, updatedSkin);
     }
 
     // Delete a skin (protegido por API Key)
     @DeleteMapping("/{id}")
-    public void deleteSkin(@PathVariable Long id, @RequestHeader("X-API-KEY") String apiKey) {
+    public void deleteSkin(@PathVariable int id, @RequestHeader("X-API-KEY") String apiKey) {
         validateApiKey(apiKey);
         skinService.deleteSkin(id);
     }

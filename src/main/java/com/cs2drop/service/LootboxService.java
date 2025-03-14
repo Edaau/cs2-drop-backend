@@ -1,6 +1,7 @@
 package com.cs2drop.service;
 
 import com.cs2drop.entity.Lootbox;
+import com.cs2drop.entity.Skin;
 import com.cs2drop.repository.LootboxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,24 @@ public class LootboxService {
 
     // Return all lootboxes
     public List<Lootbox> getAllLootboxes() {
-        return lootboxRepository.findAll();
+    	// Pega todas as lootboxes do repositório
+        List<Lootbox> lootboxes = lootboxRepository.findAll();
+
+        // Itera sobre cada lootbox e limita as skins a 3
+        for (Lootbox lootbox : lootboxes) {
+            List<Skin> skins = lootbox.getSkins();
+            
+            // Limita as skins para 3 se houver mais de 3 skins
+            if (skins.size() > 3) {
+                lootbox.setSkins(skins.subList(0, 3)); // Atualiza com as 3 primeiras skins
+            }
+        }
+        
+        return lootboxes;
     }
 
     // search by ID
-    public Optional<Lootbox> getLootboxById(long id) {
+    public Optional<Lootbox> getLootboxById(int id) {
         return lootboxRepository.findById(id);
     }
 
@@ -33,7 +47,7 @@ public class LootboxService {
     public Lootbox addLootbox(Lootbox lootbox) {
         return lootboxRepository.save(lootbox);
     }
-    public Lootbox updateLootbox(long id, Lootbox updatedLootbox) {
+    public Lootbox updateLootbox(int id, Lootbox updatedLootbox) {
         Optional<Lootbox> optionalLootbox = lootboxRepository.findById(id);
         
         if (optionalLootbox.isPresent()) { // Verify if find a lootbox
@@ -45,7 +59,7 @@ public class LootboxService {
         }
     }
     // Delete one lootbox by ID
-    public void deleteLootbox(long id) {
+    public void deleteLootbox(int id) {
         lootboxRepository.deleteById(id);
     }
 }
