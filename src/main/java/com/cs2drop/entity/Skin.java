@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class Skin {
 	public Skin() {}
 
-	public Skin(Long skin_id, String name, String rarity, double chance, LootBox lootbox) {
+	public Skin(Long skin_id, String name, String rarity, double chance, Lootbox lootbox) {
 		super();
 		this.skin_id = skin_id;
 		this.name = name;
@@ -30,7 +30,7 @@ public class Skin {
 
     @ManyToOne
     @JoinColumn(name = "lootbox_id", nullable = false)
-    private LootBox lootbox;
+    private Lootbox lootbox;
 
 	public Long getSkin_id() {
 		return skin_id;
@@ -64,11 +64,11 @@ public class Skin {
 		this.chance = chance;
 	}
 
-	public LootBox getLootbox() {
+	public Lootbox getLootbox() {
 		return lootbox;
 	}
 
-	public void setLootbox(LootBox lootbox) {
+	public void setLootbox(Lootbox lootbox) {
 		this.lootbox = lootbox;
 	}
 

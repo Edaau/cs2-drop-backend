@@ -3,10 +3,10 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class LootBox {
-	 public LootBox() {}
+public class Lootbox {
+	 public Lootbox() {}
 
-	public LootBox(Long lootBox_id, String name, List<Skin> skins) {
+	public Lootbox(Long lootBox_id, String name, List<Skin> skins) {
 		super();
 		this.lootBox_id = lootBox_id;
 		this.name = name;
