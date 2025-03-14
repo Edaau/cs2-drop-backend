@@ -27,39 +27,39 @@ public class SkinController {
         }
     }
 
-    // 1️⃣ Listar todas as skins
+    //  List all skins
     @GetMapping
     public List<Skin> getAllSkins() {
         return skinService.getAllSkins();
     }
 
-    // 2️⃣ Buscar uma skin por ID
+    // search by skin ID
     @GetMapping("/{id}")
     public Optional<Skin> getSkinById(@PathVariable Long id) {
         return skinService.getSkinById(id);
     }
 
-    // 3️⃣ Buscar skins de uma lootbox específica
+    // Search all skins in a lootbox by lootboxId
     @GetMapping("/lootbox/{lootboxId}")
     public List<Skin> getSkinsByLootbox(@PathVariable Long lootboxId) {
         return skinService.getSkinsByLootbox(lootboxId);
     }
 
-    // 4️⃣ Adicionar uma nova skin (protegido por API Key)
+    // Add a new skin
     @PostMapping
     public Skin addSkin(@RequestBody Skin skin, @RequestHeader("X-API-KEY") String apiKey) {
         validateApiKey(apiKey);
         return skinService.addSkin(skin);
     }
 
-    // 5️⃣ Atualizar uma skin (protegido por API Key)
+    // Update a new skin
     @PutMapping("/{id}")
     public Skin updateSkin(@PathVariable Long id, @RequestBody Skin updatedSkin, @RequestHeader("X-API-KEY") String apiKey) {
         validateApiKey(apiKey);
         return skinService.updateSkin(id, updatedSkin);
     }
 
-    // 6️⃣ Deletar uma skin (protegido por API Key)
+    // Delete a skin (protegido por API Key)
     @DeleteMapping("/{id}")
     public void deleteSkin(@PathVariable Long id, @RequestHeader("X-API-KEY") String apiKey) {
         validateApiKey(apiKey);
