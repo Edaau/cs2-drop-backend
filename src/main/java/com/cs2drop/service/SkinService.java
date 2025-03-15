@@ -39,7 +39,7 @@ public class SkinService {
         
         if (optionalSkin.isPresent()) { // Verify if find a lootbox
             Skin existingSkin = optionalSkin.get(); // get lootbox 
-            existingSkin.setName(updatedSkin.getName()); // Update the name
+            existingSkin.setSkinName(updatedSkin.getSkinName()); // Update the name
             return skinRepository.save(existingSkin); // Save and return
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Skin with ID " + id + " not found");

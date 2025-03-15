@@ -3,15 +3,16 @@ import jakarta.persistence.*;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Lootbox {
 	 public Lootbox() {}
 
-	public Lootbox(int lootbox_id, String name, List<Skin> skins) {
+	public Lootbox(int lootbox_id, String lootbox_name , List<Skin> skins) {
 		super();
 		this.lootbox_id = lootbox_id;
-		this.lootbox_name = name;
+		this.lootbox_name = lootbox_name;
 		this.skins = skins;
 	}
 
@@ -25,20 +26,20 @@ public class Lootbox {
 	 @JsonIgnore
 	 private List<Skin> skins;
 
-	public int getLootbox_id() {
+	public int getCaseId() {
 		return lootbox_id;
 	}
 
-	public void setLootbox_id(int lootbox_id) {
+	public void setCaseId(int lootbox_id) {
 		this.lootbox_id = lootbox_id;
 	}
 
-	public String getName() {
+	public String getCaseName() {
 		return lootbox_name;
 	}
 
-	public void setName(String name) {
-		this.lootbox_name = name;
+	public void setCaseName(String lootbox_name ) {
+		this.lootbox_name = lootbox_name ;
 	}
 
 	public List<Skin> getSkins() {

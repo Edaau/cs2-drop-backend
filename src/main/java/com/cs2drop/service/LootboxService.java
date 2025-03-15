@@ -22,20 +22,7 @@ public class LootboxService {
 
     // Return all lootboxes
     public List<Lootbox> getAllLootboxes() {
-    	// Pega todas as lootboxes do repositório
-        List<Lootbox> lootboxes = lootboxRepository.findAll();
-
-        // Itera sobre cada lootbox e limita as skins a 3
-        for (Lootbox lootbox : lootboxes) {
-            List<Skin> skins = lootbox.getSkins();
-            
-            // Limita as skins para 3 se houver mais de 3 skins
-            if (skins.size() > 3) {
-                lootbox.setSkins(skins.subList(0, 3)); // Atualiza com as 3 primeiras skins
-            }
-        }
-        
-        return lootboxes;
+        return lootboxRepository.findAll();
     }
 
     // search by ID
@@ -52,7 +39,7 @@ public class LootboxService {
         
         if (optionalLootbox.isPresent()) { // Verify if find a lootbox
             Lootbox existingLootbox = optionalLootbox.get(); // get lootbox 
-            existingLootbox.setName(updatedLootbox.getName()); // Update the name
+            existingLootbox.setCaseName(updatedLootbox.getCaseName()); // Update the name
             return lootboxRepository.save(existingLootbox); // Save and return
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lootbox with ID " + id + " not found");
@@ -60,6 +47,12 @@ public class LootboxService {
     }
     // Delete one lootbox by ID
     public void deleteLootbox(int id) {
-        lootboxRepository.deleteById(id);
+    	Optional<Lootbox> optionalLootbox = lootboxRepository.findById(id);
+    	
+    	if (optionalLootbox.isPresent()) { // Verify if find a lootbox 
+    		lootboxRepository.deleteById(id); //delete lootbox
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lootbox with ID " + id + " not found");
+        }
     }
 }

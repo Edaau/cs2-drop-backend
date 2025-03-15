@@ -36,14 +36,6 @@ public class LootboxController {
     //  List all lootboxes
     @GetMapping
     public List<Lootbox> getAllLootboxes() {
-    	// just show 3 skins for each lootbox
-    	List<Lootbox> lootboxes = lootboxService.getAllLootboxes();
-    	for (Lootbox lootbox : lootboxes) {
-            if (lootbox.getSkins().size() > 3) {
-                List<Skin> limitedSkins = lootbox.getSkins().subList(0, 3);
-                lootbox.setSkins(limitedSkins);  
-            }
-        }
         return lootboxService.getAllLootboxes();
     }
 

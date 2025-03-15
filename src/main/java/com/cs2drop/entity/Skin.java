@@ -43,11 +43,11 @@ public class Skin {
 		this.skin_id = skin_id;
 	}
 
-	public String getName() {
+	public String getSkinName() {
 		return skin_name;
 	}
 
-	public void setName(String name) {
+	public void setSkinName(String name) {
 		this.skin_name = name;
 	}
 
