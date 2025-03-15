@@ -59,7 +59,7 @@ public class SkinController {
         return skinService.updateSkin(id, updatedSkin);
     }
 
-    // Delete a skin (protegido por API Key)
+    // Delete a skin 
     @DeleteMapping("/{id}")
     public void deleteSkin(@PathVariable int id, @RequestHeader("X-API-KEY") String apiKey) {
         validateApiKey(apiKey);

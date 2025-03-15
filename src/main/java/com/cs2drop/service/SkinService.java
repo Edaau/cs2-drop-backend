@@ -27,7 +27,13 @@ public class SkinService {
 
     // Search one skin by Id
     public Optional<Skin> getSkinById(int id) {
-        return skinRepository.findById(id);
+    	Optional<Skin> optionalSkin = skinRepository.findById(id);
+        
+        if (optionalSkin.isPresent()) { // Verify if find a lootbox
+            return optionalSkin; // Save and return
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Skin with ID " + id + " not found");
+        }
     }
 
     // Add a new Skin
