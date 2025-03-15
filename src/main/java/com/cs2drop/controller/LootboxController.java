@@ -66,4 +66,10 @@ public class LootboxController {
         lootboxService.deleteLootbox(id);
         return ResponseEntity.noContent().build();
     }
+    
+    @PostMapping("/{id}/open")
+    public ResponseEntity<Skin> openLootbox(@PathVariable int id) {
+        Skin obtainedSkin = lootboxService.openLootbox(id);
+        return ResponseEntity.ok(obtainedSkin);
+    }
 }

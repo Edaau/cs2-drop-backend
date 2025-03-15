@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class LootboxService {
@@ -54,5 +55,37 @@ public class LootboxService {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lootbox with ID " + id + " not found");
         }
+    }
+    
+    public Skin openLootbox(int lootbox_id) {
+        Lootbox lootbox = lootboxRepository.findById(lootbox_id).orElse(null);
+        
+        if (lootbox == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Lootbox not found");
+        }
+
+        List<Skin> skins = lootbox.getSkins();
+        if (skins.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Lootbox has no skins");
+        }
+
+        // Sum all chances to normalize
+        double totalChance = 0;
+        for (Skin skin : skins) {
+            totalChance += skin.getChance();
+        }
+
+        Random random = new Random();
+        double roll = random.nextDouble() * totalChance; // now, use a real sum
+        double cumulativeChance = 0;
+
+        for (int i = 0; i < skins.size(); i++) {
+            cumulativeChance += skins.get(i).getChance();
+            if (roll <= cumulativeChance) {
+                return skins.get(i);
+            }
+        }
+
+        return skins.get(skins.size() - 1); // fallback return(rare case)
     }
 }
