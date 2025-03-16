@@ -18,7 +18,8 @@ public class Skin {
 	}
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "skin_skin_id_seq")
+	@SequenceGenerator(name = "skin_skin_id_seq", sequenceName = "public.skin_skin_id_seq", allocationSize = 1)
     private int skin_id;
 
     @Column(nullable = false)

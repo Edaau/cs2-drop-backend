@@ -47,21 +47,21 @@ public class SkinController {
 
     // Add a new skin
     @PostMapping
-    public Skin addSkin(@RequestBody Skin skin, @RequestHeader("X-API-KEY") String apiKey) {
+    public Skin addSkin(@RequestBody Skin skin, @RequestHeader("API-Key") String apiKey) {
         validateApiKey(apiKey);
         return skinService.addSkin(skin);
     }
 
     // Update a new skin
     @PutMapping("/{id}")
-    public Skin updateSkin(@PathVariable int id, @RequestBody Skin updatedSkin, @RequestHeader("X-API-KEY") String apiKey) {
+    public Skin updateSkin(@PathVariable int id, @RequestBody Skin updatedSkin, @RequestHeader("API-Key") String apiKey) {
         validateApiKey(apiKey);
         return skinService.updateSkin(id, updatedSkin);
     }
 
     // Delete a skin 
     @DeleteMapping("/{id}")
-    public void deleteSkin(@PathVariable int id, @RequestHeader("X-API-KEY") String apiKey) {
+    public void deleteSkin(@PathVariable int id, @RequestHeader("API-Key") String apiKey) {
         validateApiKey(apiKey);
         skinService.deleteSkin(id);
     }
