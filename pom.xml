@@ -68,6 +68,26 @@
         <scope>runtime</scope>
         <optional>true</optional>
     </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <version>3.4.3</version>
+        <scope>test</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>5.16.1</version>
+        <scope>test</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>5.11.4</version>
+        <scope>test</scope>
+    </dependency>
 </dependencies>
 <build>
     <plugins>
