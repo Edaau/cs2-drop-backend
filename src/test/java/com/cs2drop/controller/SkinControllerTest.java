@@ -151,7 +151,7 @@ public class SkinControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/skins/{id}", skinId)
         		.header("API-Key", apiKey))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
     }
 
     @Test

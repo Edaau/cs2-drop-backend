@@ -5,6 +5,7 @@ import com.cs2drop.service.SkinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -61,8 +62,9 @@ public class SkinController {
 
     // Delete a skin 
     @DeleteMapping("/{id}")
-    public void deleteSkin(@PathVariable int id, @RequestHeader("API-Key") String apiKey) {
+    public ResponseEntity<Void> deleteSkin(@PathVariable int id, @RequestHeader("API-Key") String apiKey) {
         validateApiKey(apiKey);
         skinService.deleteSkin(id);
+        return ResponseEntity.noContent().build();
     }
 }
