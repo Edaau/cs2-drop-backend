@@ -27,6 +27,9 @@ public class Skin {
 
     @Column(nullable = false)
     private String rarity;
+    
+    @Version
+    private int version; 
 
     @Column(nullable = false)
     private double chance;

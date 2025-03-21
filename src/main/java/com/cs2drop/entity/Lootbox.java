@@ -24,6 +24,9 @@ public class Lootbox {
 	 @OneToMany(mappedBy = "lootbox", cascade = CascadeType.ALL, orphanRemoval = true)
 	 @JsonIgnore
 	 private List<Skin> skins;
+	 
+	 @Version
+	 private int version; 
 
 	public int getCaseId() {
 		return lootbox_id;
