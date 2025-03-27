@@ -16,6 +16,12 @@ public class Skin {
 		this.chance = chance;
 		this.lootbox = lootbox;
 	}
+	public Skin(String name, String rarity, double chance, Lootbox lootbox) {
+	    this.skin_name = name;
+	    this.rarity = rarity;
+	    this.chance = chance;
+	    this.lootbox = lootbox;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "skin_skin_id_seq")

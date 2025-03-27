@@ -24,6 +24,12 @@ public class SkinService {
     public SkinService(SkinRepository skinRepository) {
         this.skinRepository = skinRepository;
     }
+    
+    @Autowired
+    public SkinService(SkinRepository skinRepository, LootboxRepository lootboxRepository) {
+        this.skinRepository = skinRepository;
+        this.lootboxRepository = lootboxRepository;
+    }
 
     // Return all skins registered 
     public List<Skin> getAllSkins() {
